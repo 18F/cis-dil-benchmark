@@ -27,7 +27,7 @@ control 'cis-dil-benchmark-3.5.1' do
 
   describe kernel_module('dccp') do
     it { should_not be_loaded }
-    #it { should be_disabled }
+    it { should be_disabled }
   end
 end
 
