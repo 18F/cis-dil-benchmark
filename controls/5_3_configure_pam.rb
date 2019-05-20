@@ -90,14 +90,13 @@ control 'cis-dil-benchmark-5.3.3' do
   tag level: 1
 
   describe.one do
-    %w(common-password system-auth).each do |f|
+    %w(common-password common-auth).each do |f|
       describe file("/etc/pam.d/#{f}") do
-        #its(:content) { should match(/^password (\S+\s+)suffient (\S+\s+)+pam_unix\.so (\S+\s+)*remember=([56789]|[1-9][0-9]+)/) }
-        its(:content) { should match(/^password(\s+)sufficient(\s+)pam_unix\.so (\S+\s+)*remember=([56789]|[1-9][0-9]+)/) }
+        its(:content) { should match(/^password(\s+)sufficient(\s+)pam_unix\.so (\S+\s+)*remember=24/) }
       end
 
       describe file("/etc/pam.d/#{f}") do
-        its(:content) { should match(/^password (\S+\s+)+pam_pwhistory\.so (\S+\s+)*remember=([56789]|[1-9][0-9]+)/) }
+        its(:content) { should match(/^password(\s+)sufficient(\s+)pam_unix\.so (\S+\s+)*remember=24/) }
       end
     end
   end
